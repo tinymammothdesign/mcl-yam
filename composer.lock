@@ -1,0 +1,105 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "0d67fcfb3072e68c55af4e67a1cf0e86",
+    "packages": [
+        {
+            "name": "hasbridge/json-schema-validator",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hasbridge/php-json-schema.git",
+                "reference": "62b2bb92fe05aca3f81e257cf721fe92dec5a167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hasbridge/php-json-schema/zipball/62b2bb92fe05aca3f81e257cf721fe92dec5a167",
+                "reference": "62b2bb92fe05aca3f81e257cf721fe92dec5a167",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Json": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Harold Asbridge",
+                    "email": "hasbridge@gmail.com"
+                }
+            ],
+            "description": "PHP 5.3 implementation of json schema validation",
+            "homepage": "https://github.com/hasbridge/php-json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2012-02-27 14:25:05"
+        },
+        {
+            "name": "slim/slim",
+            "version": "2.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slimphp/Slim.git",
+                "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/20a02782f76830b67ae56a5c08eb1f563c351a37",
+                "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "ext-mcrypt": "Required for HTTP cookie encryption"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Slim": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Lockhart",
+                    "email": "info@joshlockhart.com",
+                    "homepage": "http://www.joshlockhart.com/"
+                }
+            ],
+            "description": "Slim Framework, a PHP micro framework",
+            "homepage": "http://github.com/codeguy/Slim",
+            "keywords": [
+                "microframework",
+                "rest",
+                "router"
+            ],
+            "time": "2015-03-08 18:41:17"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

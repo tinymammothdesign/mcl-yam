@@ -1,0 +1,13 @@
+<xml>
+    <routes>
+        <route name="TestRoute" handler="TestRoute">
+            <endpoint method="GET">/api</endpoint>
+
+            <operators>
+                <operator name="MyFirstOperator">
+                    <password>Foobar</password>
+                </operator>
+            </operators>
+        </route>
+    </routes>
+</xml>

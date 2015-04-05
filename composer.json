@@ -1,0 +1,10 @@
+{
+    "require": {
+        "slim/slim": "~2.6",
+        "hasbridge/json-schema-validator": "0.2.*"
+    },
+
+    "autoload": {
+        "psr-4": {"Yam\\": "Yam/"}
+    }
+}
