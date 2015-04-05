@@ -1,4 +1,19 @@
 {
+    "name": "tinymammothdesign/mcl-yam",
+    "description": "High level OOP Slim router",
+    "version": "1.0.0",
+    "type": "library",
+    "keywords": ["router", "oop"],
+    "time": "2015",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Grayson-Widarsito",
+            "email": "adrian@tinymammothdesign.com.au",
+            "homepage": "http://tinymammothdesign.com.au",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "slim/slim": "~2.6",
         "hasbridge/json-schema-validator": "0.2.*"
