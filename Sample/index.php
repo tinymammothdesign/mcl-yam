@@ -9,6 +9,7 @@ class TestRoute extends \Yam\Route\AbstractRoute{
 
         $body = new \Yam\Route\Response\ReturnBody\StringBody\StringBody("This is a return payload!");
         $this->response->setReturnBody($body);
+        $this->response->setStatusCode(new \Yam\Route\Response\StatusCode\StatusBadRequest());
     }
 
 }
