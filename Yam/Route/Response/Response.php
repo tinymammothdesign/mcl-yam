@@ -3,6 +3,7 @@
 namespace Yam\Route\Response;
 
 use Yam\Route\Response\ReturnBody\IReturnBody;
+use Yam\Route\Response\StatusCode\IStatusCode;
 use Yam\Route\ValueObjects\GenericETag\GenericETag;
 
 class Response{
@@ -40,6 +41,10 @@ class Response{
 
     public function getReturnBody(){
         return $this->returnBody;
+    }
+
+    public function setStatusCode(IStatusCode $statusCode){
+        $this->response->setStatus($statusCode->toStatus());
     }
 
 }
