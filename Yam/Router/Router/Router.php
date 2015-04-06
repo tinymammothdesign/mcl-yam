@@ -1,6 +1,6 @@
 <?php
 
-namespace Yam\Router;
+namespace Yam\Router\Router;
 
 use Slim\Slim;
 use Yam\Route\AbstractRoute;
@@ -9,6 +9,7 @@ use Yam\Route\Request\Request;
 use Yam\Route\Response\Response;
 use Yam\RouteParser\RouteParser;
 use Yam\Route\Response\ReturnBody\IReturnBody;
+use Yam\Router\RouteFactory\IRouteFactory;
 
 class Router{
 
@@ -16,6 +17,11 @@ class Router{
     protected $routeWrappers;
     protected $slim;
     protected $operators;
+
+    /**
+     * @var \Yam\Router\RouteFactory\IRouteFactory
+     */
+    protected $routeFactory = NULL;
 
     protected function runOperators(AbstractRoute &$route, Request &$request, Response &$response, $operatorRequirements){
         foreach($operatorRequirements as $anOperator){
@@ -29,6 +35,10 @@ class Router{
     }
 
     protected function setupSlimRoutes(){
+        if (NULL === $this->routeFactory){
+            throw new EMissingRouteFactory();
+        }
+
         foreach($this->routeWrappers as $aRouteWrapper){
             /** @var $aRouteWrapper \Yam\RouteWrapper\RouteWrapper */
             foreach($aRouteWrapper->endpoints() as $anEndpoint){
@@ -45,7 +55,7 @@ class Router{
                     $response = new Response($slim->response);
 
                     /** @var $route \Yam\Route\AbstractRoute */
-                    $route = new $class();
+                    $route = $this->routeFactory->instantiateRoute($class);
 
                     /** Run through all the operators */
                     $self->runOperators($route, $request, $response, $operators);
@@ -73,6 +83,10 @@ class Router{
 
     public function registerOperator($className, $name){
         $this->operators->add($className, $name);
+    }
+
+    public function setRouteFactory(IRouteFactory $routeFactory){
+        $this->routeFactory = $routeFactory;
     }
 
     public function initialize($filename){

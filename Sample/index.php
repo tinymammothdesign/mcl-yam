@@ -25,6 +25,7 @@ class TestOperator extends \Yam\Route\Operators\AbstractOperator{
 $routeParser = new Yam\RouteParser\RouteParser();
 $slim = new \Slim\Slim();
 
-$router = new \Yam\Router\Router($routeParser, $slim);
+$router = new \Yam\Router\Router\Router($routeParser, $slim);
 $router->registerOperator(new TestOperator(), "MyFirstOperator");
+$router->setRouteFactory(new \Yam\Router\RouteFactory\SimpleRouteFactory());
 $router->initialize(__DIR__ . "/routes.xml");
