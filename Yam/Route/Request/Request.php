@@ -48,4 +48,8 @@ class Request{
             throw new ERequestHeaderMissing("Authorization header was requested but is not present.");
         }
     }
+
+    public function getPostData(){
+        return $this->request->post();
+    }
 }
