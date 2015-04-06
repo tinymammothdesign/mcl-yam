@@ -9,5 +9,9 @@
                 </operator>
             </operators>
         </route>
+
+        <route name="TestRoute2" handler="TestRoute">
+            <endpoint method="GET">/api2</endpoint>
+        </route>
     </routes>
 </xml>

@@ -11,13 +11,15 @@ class RouteParser{
     protected $routeWrappers = [];
 
     private function extractOperators($operatorXMLRoot, RouteWrapper &$wrapper){
-        foreach($operatorXMLRoot as $anOperator){
-            $annotations = [];
-            foreach($anOperator->children() as $key => $value){
-                $annotations[(string)$key] = (string)$value;
-            }
+        if (NULL != $operatorXMLRoot){
+            foreach($operatorXMLRoot as $anOperator){
+                $annotations = [];
+                foreach($anOperator->children() as $key => $value){
+                    $annotations[(string)$key] = (string)$value;
+                }
 
-            $wrapper->addOperator((string)$anOperator->attributes()->name, $annotations);
+                $wrapper->addOperator((string)$anOperator->attributes()->name, $annotations);
+            }
         }
     }
 

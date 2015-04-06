@@ -7,7 +7,7 @@ class RouteWrapper{
     private $label;
     private $routeClassName;
     private $endpoints = [];
-    private $operatorList;
+    private $operatorList = [];
 
     public function __construct($label, $routeClassName){
         $this->label = $label;
