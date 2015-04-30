@@ -3,6 +3,7 @@
 namespace Yam\Router\Router;
 
 use Slim\Slim;
+use Yam\ExceptionHandler\IExceptionHandler;
 use Yam\Route\AbstractRoute;
 use Yam\Route\Operators\OperatorCollection\OperatorCollection;
 use Yam\Route\Request\Request;
@@ -18,6 +19,8 @@ class Router{
     protected $slim;
     protected $operators;
 
+    protected $exceptionHandlers = [];
+
     /**
      * @var \Yam\Router\RouteFactory\IRouteFactory
      */
@@ -32,6 +35,10 @@ class Router{
             $operator = $this->operators->findByName($name);
             $operator->executeOperator($request, $response, $route, $annotations);
         }
+    }
+
+    public function registerExceptionHandler(IExceptionHandler $exceptionHandler, $forExceptionClass){
+        $this->exceptionHandlers[$forExceptionClass] = $exceptionHandler;
     }
 
     protected function setupSlimRoutes(){
@@ -61,7 +68,18 @@ class Router{
                     $self->runOperators($route, $request, $response, $operators);
 
                     $route->prepare($request, $response);
-                    $route->execute();
+
+                    try{
+                        $route->execute();
+                    }catch(\Exception $e){
+                        if (isset($self->exceptionHandlers[get_class($e)])){
+                            /** @var \Yam\ExceptionHandler\IExceptionHandler $eHandler */
+                            $eHandler = $self->exceptionHandlers[get_class($e)];
+                            $eHandler->handle($e, $response);
+                        }else{
+                            throw $e;
+                        }
+                    }
 
                     if ($response->getReturnBody() instanceof IReturnBody){
                         echo $response->getReturnBody()->getAsResponseBody();

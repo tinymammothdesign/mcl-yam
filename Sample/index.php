@@ -10,6 +10,8 @@ class TestRoute extends \Yam\Route\AbstractRoute{
         $body = new \Yam\Route\Response\ReturnBody\StringBody\StringBody("This is a return payload!");
         $this->response->setReturnBody($body);
         $this->response->setStatusCode(new \Yam\Route\Response\StatusCode\StatusBadRequest());
+
+        throw new Exception("Hello");
     }
 
 }
@@ -23,10 +25,20 @@ class TestOperator extends \Yam\Route\Operators\AbstractOperator{
     }
 }
 
+class GenericExceptionHandler implements \Yam\ExceptionHandler\IExceptionHandler{
+
+    public function handle(\Exception $exception, \Yam\Route\Response\Response &$response){
+        $response->setReturnBody(new \Yam\Route\Response\ReturnBody\JSONBody\JSONBody(["Message" => "Exception!"]));
+    }
+}
+
 $routeParser = new Yam\RouteParser\RouteParser();
 $slim = new \Slim\Slim();
 
 $router = new \Yam\Router\Router\Router($routeParser, $slim);
 $router->registerOperator(new TestOperator(), "MyFirstOperator");
 $router->setRouteFactory(new \Yam\Router\RouteFactory\SimpleRouteFactory());
+
+$router->registerExceptionHandler(new GenericExceptionHandler(), "Exception");
+
 $router->initialize(__DIR__ . "/routes.xml");
