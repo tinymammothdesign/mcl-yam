@@ -17,13 +17,19 @@ abstract class AbstractRoute{
      */
     protected $response;
 
+    /**
+     * @var array
+     */
+    protected $queryParams;
+
     public function fileLocation(){
         return __DIR__;
     }
 
-    public function prepare(Request $request, Response $response){
+    public function prepare(Request $request, Response $response, array $queryParams){
         $this->response = $response;
         $this->request = $request;
+        $this->queryParams = $queryParams;
     }
 
     abstract public function execute();

@@ -67,7 +67,8 @@ class Router{
                     /** Run through all the operators */
                     $self->runOperators($route, $request, $response, $operators);
 
-                    $route->prepare($request, $response);
+                    $queryParams = func_get_args();
+                    $route->prepare($request, $response, $queryParams);
 
                     try{
                         $route->execute();
