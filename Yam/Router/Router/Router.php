@@ -64,13 +64,13 @@ class Router{
                     /** @var $route \Yam\Route\AbstractRoute */
                     $route = $this->routeFactory->instantiateRoute($class);
 
-                    /** Run through all the operators */
-                    $self->runOperators($route, $request, $response, $operators);
-
-                    $queryParams = func_get_args();
-                    $route->prepare($request, $response, $queryParams);
-
                     try{
+                        /** Run through all the operators */
+                        $self->runOperators($route, $request, $response, $operators);
+
+                        $queryParams = func_get_args();
+                        $route->prepare($request, $response, $queryParams);
+
                         $route->execute();
                     }catch(\Exception $e){
                         if (isset($self->exceptionHandlers[get_class($e)])){
