@@ -52,4 +52,8 @@ class Request{
     public function getPostData(){
         return $this->request->post();
     }
+
+    public function getBodyAsArray(){
+        return json_decode($this->request->getBody(), JSON_OBJECT_AS_ARRAY);
+    }
 }
