@@ -56,4 +56,8 @@ class Request{
     public function getBodyAsArray(){
         return json_decode($this->request->getBody(), JSON_OBJECT_AS_ARRAY);
     }
+
+    public function getHost(){
+        return $this->request->getHostWithPort();
+    }
 }
