@@ -113,4 +113,9 @@ class Router{
         $this->routeWrappers = $this->routeParser->getRouteWrappers();
         $this->setupSlimRoutes();
     }
+
+    public function slim(){
+        return $this->slim;
+    }
+
 }
