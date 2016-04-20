@@ -21,6 +21,8 @@ class Router{
 
     protected $exceptionHandlers = [];
 
+    public $logger = NULL;
+
     /**
      * @var \Yam\Router\RouteFactory\IRouteFactory
      */
@@ -35,6 +37,10 @@ class Router{
             $operator = $this->operators->findByName($name);
             $operator->executeOperator($request, $response, $route, $annotations);
         }
+    }
+
+    public function setLogger(callable $logger){
+        $this->logger = $logger;
     }
 
     public function registerExceptionHandler(IExceptionHandler $exceptionHandler, $forExceptionClass){
@@ -79,6 +85,10 @@ class Router{
                             $eHandler->handle($e, $response);
                         }else{
                             throw $e;
+                        }
+                    }finally{
+                        if (is_callable($this->logger)){
+                            call_user_func_array($this->logger, [$request, $response]);
                         }
                     }
 
