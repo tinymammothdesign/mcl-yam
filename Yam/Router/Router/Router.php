@@ -88,7 +88,7 @@ class Router{
                         }
                     }finally{
                         if (is_callable($this->logger)){
-                            call_user_func_array($this->logger, [$slim->request, $slim->response]);
+                         call_user_func_array($this->logger, [$slim->request, $slim->response]);
                         }
                     }
 
