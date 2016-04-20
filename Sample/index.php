@@ -38,6 +38,10 @@ $slim = new \Slim\Slim();
 $router = new \Yam\Router\Router\Router($routeParser, $slim);
 $router->registerOperator(new TestOperator(), "MyFirstOperator");
 $router->setRouteFactory(new \Yam\Router\RouteFactory\SimpleRouteFactory());
+$router->logger = function($a, $b){
+    // Log here
+    echo 3444;
+};
 
 $router->registerExceptionHandler(new GenericExceptionHandler(), "Exception");
 
